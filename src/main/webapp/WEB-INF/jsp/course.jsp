@@ -10,6 +10,8 @@
     <br><br>
     时长:&nbsp ${course.duration}
     <br><br>
+    描述:&nbsp ${course.info}
+    <br><br>
     <img src="<%=request.getContextPath()%>/${course.imagePath}" />
   </body>
 </html>

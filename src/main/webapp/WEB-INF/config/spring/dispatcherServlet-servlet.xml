@@ -28,6 +28,14 @@
   <!-- 静态资源 -->
   <mvc:resources mapping="/res/**" location="/resources/" />
 
+  <!-- 拦截器 -->
+  <mvc:interceptors>
+    <mvc:interceptor>
+      <mvc:mapping path="/course/query*" />
+      <bean id="courseInterceptor" class="com.wh.mvcdemo.interceptor.CourseInterceptor" />
+    </mvc:interceptor>
+  </mvc:interceptors>
+
   <!-- ViewResolver -->
   <bean id="contentNegotiatingViewResolver"
         class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

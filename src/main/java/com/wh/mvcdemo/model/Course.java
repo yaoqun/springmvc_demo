@@ -9,6 +9,7 @@ public class Course {
 	private String name;
 	private Long duration;
 	private String imagePath;
+	private String info;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -26,6 +27,8 @@ public class Course {
 		this.imagePath = imagePath;
 	}
 
+	public void setInfo(String info) { this.info = info; }
+
 	public Integer getId() {
 		return id;
 	}
@@ -41,4 +44,6 @@ public class Course {
 	public String getImagePath() {
 		return imagePath;
 	}
+
+	public String getInfo() { return info; }
 }
