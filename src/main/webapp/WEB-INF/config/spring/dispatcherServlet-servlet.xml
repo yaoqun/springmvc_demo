@@ -32,7 +32,11 @@
   <mvc:interceptors>
     <mvc:interceptor>
       <mvc:mapping path="/course/query*" />
-      <bean id="courseInterceptor" class="com.wh.mvcdemo.interceptor.CourseInterceptor" />
+      <bean id="courseInterceptorOne" class="com.wh.mvcdemo.interceptor.CourseInterceptorOne" />
+    </mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/course/query*" />
+      <bean id="courseInterceptorTwo" class="com.wh.mvcdemo.interceptor.CourseInterceptorTwo" />
     </mvc:interceptor>
   </mvc:interceptors>
 

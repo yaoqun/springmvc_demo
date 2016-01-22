@@ -12,29 +12,21 @@ import java.util.Map;
 /**
  * Created by Whiker on 2016/1/22.
  */
-public class CourseInterceptor implements HandlerInterceptor {
+public class CourseInterceptorTwo implements HandlerInterceptor {
 
 	// Handler调用前
 	public boolean preHandle(
 			HttpServletRequest request, HttpServletResponse response,
 			Object handler) throws Exception {
-		System.out.println("\n>>> preHandler\n");
+		System.out.println(">>> CourseInterceptorTwo preHandler()");
 		String courseIdStr = request.getParameter("courseId");
 		if (courseIdStr == null) {
 			return true;
 		}
 
-		try {
-			if (Integer.valueOf(courseIdStr) <= 0) {
-				PrintWriter out = response.getWriter();
-				out.println("courseId <= 0");
-				out.close();
-				return false;
-			}
-		}
-		catch (Exception e) {
+		if (Integer.valueOf(courseIdStr) <= 0) {
 			PrintWriter out = response.getWriter();
-			out.println("parse courseId error");
+			out.println("courseId <= 0");
 			out.close();
 			return false;
 		}
@@ -45,13 +37,18 @@ public class CourseInterceptor implements HandlerInterceptor {
 	public void postHandle(
 			HttpServletRequest request, HttpServletResponse response,
 			Object handler, ModelAndView modelAndView) throws Exception {
-		System.out.println("\n>>> postHandle\n");
+		System.out.println(">>> CourseInterceptorTwo postHandle");
 		if (modelAndView != null && !modelAndView.isEmpty()) {
 			Map<String, Object> models = modelAndView.getModel();
 			String modelName = "course";
 			if (models.containsKey(modelName)) {
 				Course course = (Course) models.get(modelName);
-				course.setInfo("postHandler");
+				if (course.getInfo() == null) {
+					course.setInfo("CourseInterceptorTwo");
+				}
+				else {
+					course.setInfo(course.getInfo() + " CourseInterceptorTwo");
+				}
 			}
 		}
 	}
@@ -60,6 +57,6 @@ public class CourseInterceptor implements HandlerInterceptor {
 	public void afterCompletion(
 			HttpServletRequest request,	HttpServletResponse response,
 			Object handler, Exception e) throws Exception {
-		System.out.println("\n>>> afterCompletion\n");
+		System.out.println(">>> CourseInterceptorTwo afterCompletion");
 	}
 }
